@@ -175,4 +175,6 @@ class Order():
             #     return 'invalid_machine'
 
         except Exception as e:
-            print(e)
+            f = open("orderlogs.txt", "w")
+            f.write(e)
+            f.close()

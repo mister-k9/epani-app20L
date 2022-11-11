@@ -1,6 +1,7 @@
 import sys
 import time
-import serial, subprocess
+import serial
+import subprocess
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtGui import QKeySequence, QPixmap
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, \
@@ -25,7 +26,6 @@ try:
     )
 except Exception as e:
     print(e)
-    
 
 
 class Worker(QObject):
@@ -86,7 +86,8 @@ class MainWindow(QMainWindow):
     def setup_screen(self):
         self.showFullScreen()
         self.setWindowFlags(Qt.FramelessWindowHint)
-        QShortcut(QKeySequence('Ctrl+Q'), self).activated.connect(QApplication.instance().quit)
+        QShortcut(QKeySequence('Ctrl+Q'),
+                  self).activated.connect(QApplication.instance().quit)
 
     def start_serial_worker_thread(self):
         self.worker = Worker()  # a new worker to perform those tasks
@@ -94,15 +95,20 @@ class MainWindow(QMainWindow):
         self.worker.moveToThread(
             self.thread)  # move the worker into the thread, do this first before connecting the signals
 
-        self.thread.started.connect(self.worker.work)  # begin our worker object's loop when the thread starts running
+        # begin our worker object's loop when the thread starts running
+        self.thread.started.connect(self.worker.work)
 
         self.worker.intReady.connect(self.on_serial_worker_listen)
         # self.pushButton_2.clicked.connect(self.stop_loop)  # stop the loop on the stop button click
 
-        self.worker.finished.connect(self.loop_finished)  # do something in the gui when the worker loop ends
-        self.worker.finished.connect(self.thread.quit)  # tell the thread it's time to stop running
-        self.worker.finished.connect(self.worker.deleteLater)  # have worker mark itself for deletion
-        self.thread.finished.connect(self.thread.deleteLater)  # have thread mark itself for deletion
+        # do something in the gui when the worker loop ends
+        self.worker.finished.connect(self.loop_finished)
+        # tell the thread it's time to stop running
+        self.worker.finished.connect(self.thread.quit)
+        # have worker mark itself for deletion
+        self.worker.finished.connect(self.worker.deleteLater)
+        # have thread mark itself for deletion
+        self.thread.finished.connect(self.thread.deleteLater)
 
         self.thread.start()
 
@@ -133,16 +139,19 @@ class MainWindow(QMainWindow):
             self.mediaplayer.set_media(media)
 
         self.vlc_events = self.mediaplayer.event_manager()
-        self.vlc_events.event_attach(vlc.EventType.MediaPlayerEndReached, self.video_finished_callback, 1)
+        self.vlc_events.event_attach(
+            vlc.EventType.MediaPlayerEndReached, self.video_finished_callback, 1)
 
     def stack_main_ui(self):
         # Body Layout
         self.adImg = QLabel("ad_img")
 
-        adImgSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        adImgSizePolicy = QSizePolicy(
+            QSizePolicy.Expanding, QSizePolicy.Expanding)
         adImgSizePolicy.setHorizontalStretch(2)
         adImgSizePolicy.setVerticalStretch(0)
-        adImgSizePolicy.setHeightForWidth(self.adImg.sizePolicy().hasHeightForWidth())
+        adImgSizePolicy.setHeightForWidth(
+            self.adImg.sizePolicy().hasHeightForWidth())
 
         self.adImg.setSizePolicy(adImgSizePolicy)
         # self.adImg.setMinimumSize(QSize(0, 500))
@@ -152,7 +161,8 @@ class MainWindow(QMainWindow):
         self.adImg.setAlignment(Qt.AlignCenter)
 
         # Main Content
-        contentSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        contentSizePolicy = QSizePolicy(
+            QSizePolicy.Expanding, QSizePolicy.Expanding)
         contentSizePolicy.setHorizontalStretch(1)
         contentSizePolicy.setVerticalStretch(0)
 
@@ -209,8 +219,8 @@ class MainWindow(QMainWindow):
 
         main_layout = QVBoxLayout()
         self.stackedWidget.setLayout(main_layout)
-        #main_layout.addWidget(self.stackedWidget)
-        #self.setLayout(main
+        # main_layout.addWidget(self.stackedWidget)
+        # self.setLayout(main
 
     def ad_image_setup(self):
         ad_img_path = os.getenv('AD_IMAGE_PATH')
@@ -259,7 +269,8 @@ class MainWindow(QMainWindow):
                 self.currOrder.set_volume('5', 15)
 
             serial_write("readcard")
-            toggle_content_screen(self.contentL, "insertCard", order=self.currOrder)
+            toggle_content_screen(
+                self.contentL, "insertCard", order=self.currOrder)
 
             return
 
@@ -267,20 +278,20 @@ class MainWindow(QMainWindow):
         if not self.currOrder.is_card_set():
             if 9 > len(data) > 5:
                 self.currOrder.set_cardno(data)
-                
-                toggle_content_screen(self.contentL, "processingPayment")
+
+                # toggle_content_screen(self.contentL, "processingPayment")
                 serial_write("cardok")
-                #TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
+                # TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
                 payment_status = self.currOrder.process_payment()
-                
+
                 if payment_status == "payment_done":
                     time.sleep(2)  # Necessary delay for serial here
-                    serial_write("tapp")
-                    toggle_content_screen(self.contentL, "tapSelection")
-                for i in range(5):
-                    print(payment_status)
-            return
+                    serial_write("dispense")
+                    toggle_content_screen(self.contentL, "dispensingWater", order=self.currOrder)
+                    self.currOrder.print_all()
 
+            print(payment_status)
+            return
 
     def tap_selection(self, data):
         if not self.currOrder.is_tap_set():
@@ -299,13 +310,12 @@ class MainWindow(QMainWindow):
             elif data == '4':
                 self.currOrder.set_tap('4')
 
-            serial_write("dispense")
-            toggle_content_screen(self.contentL, "dispensingWater", order=self.currOrder)
-            self.currOrder.print_all()
+            # serial_write("dispense")
+            # toggle_content_screen(self.contentL, "dispensingWater", order=self.currOrder)
+            # self.currOrder.print_all()
             # TODO : NAVIGATING TO AD SCREEN WHEN 'C' IS PRESSED WHILE DISPENSING
 
     def on_serial_worker_listen(self, data):
-        
 
         if data == "":
             # TODO : See if this can be removed
@@ -331,13 +341,12 @@ class MainWindow(QMainWindow):
             # serial_write("volume")
             # toggle_content_screen(self.contentL, "volumeSelection")
             serial_write("readcard")
-            toggle_content_screen(self.contentL, "insertCard", order=self.currOrder)
+            toggle_content_screen(
+                self.contentL, "insertCard", order=self.currOrder)
             return
 
-        
-
         # for volume selection
-        #self.volume_selection(data)
+        # self.volume_selection(data)
 
         if data == 'C':
             self.currOrder = None
@@ -348,12 +357,12 @@ class MainWindow(QMainWindow):
             # for reading card
             self.read_card(data)
         except Exception as e:
-            f = open("demofile2.txt", "w")
+            f = open("readcardlogs.txt", "w")
             f.write(e)
             f.close()
 
         # for tap selection
-        self.tap_selection(data)
+        # self.tap_selection(data)
 
         if 'z' in data:
             # self.currOrder.dispensed_volume = data[1:]
@@ -368,8 +377,6 @@ class MainWindow(QMainWindow):
             return
 
 
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
@@ -379,4 +386,3 @@ if __name__ == '__main__':
     except Exception as e:
         print(e)
         print("Exiting ")
-        
