@@ -269,10 +269,11 @@ class MainWindow(QMainWindow):
                 self.currOrder.set_cardno(data)
 
                 serial_write("cardok")
-                payment_status = self.currOrder.process_payment()
-                # TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
-                # toggle_content_screen(self.contentL, "processingPayment")
+                #TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
+                toggle_content_screen(self.contentL, "processingPayment")
 
+                payment_status = self.currOrder.process_payment()
+                
                 if payment_status == "payment_done":
                     time.sleep(2)  # Necessary delay for serial here
                     serial_write("tapp")
