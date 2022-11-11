@@ -352,10 +352,12 @@ class MainWindow(QMainWindow):
         self.tap_selection(data)
 
         if 'z' in data:
-            self.currOrder.dispensed_volume = data[1:]
-            print(self.currOrder.dispensed_volume)
+            # self.currOrder.dispensed_volume = data[1:]
+            print('z',data)
+        if 'y' in data:
+            print('y',data)
 
-        if data == "dispensed":
+        if data == "new":
             time.sleep(2)
             self.currOrder = None
             self.toggle_ad_video()
