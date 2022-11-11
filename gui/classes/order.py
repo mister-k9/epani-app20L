@@ -12,7 +12,7 @@ load_dotenv(dotenv_path=dotenv_path)
 
 class Order():
     def __init__(self):
-        self.volume = '20000'
+        self.volume = '20'
         self.amount = 0
         self.tap = ''
         self.cardNo = ''
