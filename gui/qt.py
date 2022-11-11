@@ -290,7 +290,7 @@ class MainWindow(QMainWindow):
                     toggle_content_screen(self.contentL, "dispensingWater", order=self.currOrder)
                     self.currOrder.print_all()
 
-            print(payment_status)
+                print(payment_status)
             return
 
     def tap_selection(self, data):
