@@ -123,8 +123,12 @@ class Order():
                 'am': self.amount,
                 'txn_ts': nw,
             }
-           
-            res = (requests.post(deduct_card_balance_endpoint,json=data)).json()
+            print("Request Started-")
+            try:
+                res = (requests.post(deduct_card_balance_endpoint,json=data)).json()
+            except Exception as e:
+                print("Request failed!")
+                print(e)
             if not type(res) == dict:
                 if res == 'Invalid Machine':
                     return 'invalid_machine'
