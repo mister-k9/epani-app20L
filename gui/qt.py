@@ -357,9 +357,7 @@ class MainWindow(QMainWindow):
             # for reading card
             self.read_card(data)
         except Exception as e:
-            f = open("readcardlogs.txt", "w")
-            f.write(e)
-            f.close()
+            print(e)
 
         # for tap selection
         # self.tap_selection(data)
