@@ -322,18 +322,22 @@ class MainWindow(QMainWindow):
 
         self.start = time.time()
 
-        if self.stackAdVideo == self.stackedWidget.currentWidget():
-            self.toggle_ad_video()
-
-            serial_write("volume")
-            toggle_content_screen(self.contentL, "volumeSelection")
-            return
-
         if self.currOrder is None:
             self.currOrder = Order()
 
+        if self.stackAdVideo == self.stackedWidget.currentWidget():
+            self.toggle_ad_video()
+
+            # serial_write("volume")
+            # toggle_content_screen(self.contentL, "volumeSelection")
+            serial_write("readcard")
+            toggle_content_screen(self.contentL, "insertCard", order=self.currOrder)
+            return
+
+        
+
         # for volume selection
-        self.volume_selection(data)
+        #self.volume_selection(data)
 
         if data == 'C':
             self.currOrder = None
@@ -353,9 +357,9 @@ class MainWindow(QMainWindow):
 
         if 'z' in data:
             # self.currOrder.dispensed_volume = data[1:]
-            print('z',data)
+            print(data)
         if 'y' in data:
-            print('y',data)
+            print(data)
 
         if data == "new":
             time.sleep(2)
