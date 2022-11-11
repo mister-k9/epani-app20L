@@ -6,7 +6,7 @@ from random import randint
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-dotenv_path = Path('/home/pi/Documents/epani-test/.env')
+dotenv_path = Path('/home/epani/Desktop/epani-app20L/.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 

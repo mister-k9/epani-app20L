@@ -14,7 +14,7 @@ from vlc import callbackmethod
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-dotenv_path = Path('/home/pi/Documents/epani-test/.env')
+dotenv_path = Path('/home/epani/Desktop/epani-app20L/.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 try:
@@ -267,11 +267,10 @@ class MainWindow(QMainWindow):
         if not self.currOrder.is_card_set():
             if 9 > len(data) > 5:
                 self.currOrder.set_cardno(data)
-
+                
+                toggle_content_screen(self.contentL, "processingPayment")
                 serial_write("cardok")
                 #TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
-                toggle_content_screen(self.contentL, "processingPayment")
-
                 payment_status = self.currOrder.process_payment()
                 
                 if payment_status == "payment_done":
