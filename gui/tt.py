@@ -129,6 +129,7 @@ class MainWindow(QMainWindow):
         self.videoframe = QFrame(frameShape=QFrame.Box, frameShadow=QFrame.Raised)
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
+        adVideoSizePolicy.setVerticalStretch(3)
         adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
         self.videoframe.setSizePolicy(adVideoSizePolicy)
 
