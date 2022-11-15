@@ -77,7 +77,7 @@ class MainWindow(QMainWindow):
         self.start_serial_worker_thread()
         self.init_layout()
         # self.ad_image_setup()
-        # self.ad_video_start()
+        self.ad_video_start()
 
         self.start = time.time()
 
@@ -152,6 +152,16 @@ class MainWindow(QMainWindow):
         ad_layout.addWidget(self.videoframe)
         self.adVideoWidget.setLayout(ad_layout)
 
+        file_name = 'media/zomato-ad.avi'
+        if file_name != '':
+            media = self.instance.media_new(file_name)
+            self.mediaplayer.set_media(media)
+
+        self.vlc_events = self.mediaplayer.event_manager()
+        self.vlc_events.event_attach(
+            vlc.EventType.MediaPlayerEndReached, self.video_finished_callback, 1)
+
+
 
         # Main Content
         contentSizePolicy = QSizePolicy(
@@ -186,6 +196,19 @@ class MainWindow(QMainWindow):
         self.mainWidget.setLayout(mainLayout)
         self.setCentralWidget(self.mainWidget)
 
+    @callbackmethod
+    def video_finished_callback(self, *args, **kwargs):
+        # self.mediaplayer.stop()
+        self.ad_video_start()
+
+    def ad_video_start(self):
+        self.mediaplayer.set_fullscreen(True)
+        # self.mediaplayer.audio_set_mute(True)
+        self.mediaplayer.play()
+        serial_write("advideo")
+
+    def ad_video_stop(self):
+        self.mediaplayer.stop()
 
 
 
