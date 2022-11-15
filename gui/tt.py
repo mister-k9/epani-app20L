@@ -126,10 +126,9 @@ class MainWindow(QMainWindow):
         # Ad Video
         self.instance = vlc.Instance('--input-repeat=999999')
         self.mediaplayer = self.instance.media_player_new()
-        self.videoframe = QFrame(frameShape=QFrame.Box, frameShadow=QFrame.Raised)
+        self.videoframe = QFrame(frameShape=QFrame.NoFrame, frameShadow=QFrame.Plain)
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
-        adVideoSizePolicy.setVerticalStretch(3)
         adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
         self.videoframe.setSizePolicy(adVideoSizePolicy)
 
