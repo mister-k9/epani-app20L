@@ -86,6 +86,7 @@ class MainWindow(QMainWindow):
     def setup_screen(self):
         self.showFullScreen()
         self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setStyleSheet('background:black;color:white;')
         QShortcut(QKeySequence('Ctrl+Q'),
                   self).activated.connect(QApplication.instance().quit)
 
@@ -131,7 +132,6 @@ class MainWindow(QMainWindow):
         # adVideoSizePolicy.setHorizontalStretch(2)
         # adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
         self.videoframe.setSizePolicy(adVideoSizePolicy)
-        self.videoframe.setStyleSheet("background: black;")
     
         if sys.platform.startswith("linux"):  # for Linux using the X Server
             self.mediaplayer.set_xwindow(self.videoframe.winId())
