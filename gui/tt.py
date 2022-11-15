@@ -123,15 +123,14 @@ class MainWindow(QMainWindow):
     def init_layout(self):
         self.mainWidget = QWidget()
         # self.mainWidget.showFullScreen()
-        self.adVideoWidget = QFrame()
+        self.adVideoWidget = QWidget()
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
         adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
         self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
 
         
-        self.adVideoWidget.setAlignment(Qt.AlignCenter)
-
+        
         # self.adImg.setSizePolicy(adImgSizePolicy)
         # self.adVideoWidget.showFullScreen()
 
@@ -188,7 +187,7 @@ class MainWindow(QMainWindow):
         bodyHorizontalLayout = QHBoxLayout()
         bodyHorizontalLayout.setSpacing(0)
         bodyHorizontalLayout.setContentsMargins(0, 0, 0, 0)
-        bodyHorizontalLayout.addWidget(self.adVideoWidget)
+        bodyHorizontalLayout.addWidget(self.videoframe)
         bodyHorizontalLayout.addWidget(contentWidget)
 
         footer_layout = QHBoxLayout()
