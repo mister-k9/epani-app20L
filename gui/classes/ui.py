@@ -44,7 +44,7 @@ def create_footer_section(layout):
                      "color:white;")
     l1.setAlignment(Qt.AlignCenter)
     l1.setText(u"99K SOCIAL ENTERPRISE")
-    l1.setMinimumHeight(171)
+    l1.setMinimumHeight(256)
 
     l2.setFont(font)
     l2.setStyleSheet(u"background: black;\n"
