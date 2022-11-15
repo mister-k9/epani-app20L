@@ -152,11 +152,11 @@ class MainWindow(QMainWindow):
             QSizePolicy.Expanding, QSizePolicy.Expanding)
         # contentSizePolicy.setHorizontalStretch(1)
         contentWidget = QWidget()
-        contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;padding-right:100px;")
+        contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
         contentWidget.setMaximumWidth(500)
         self.contentLayout = QVBoxLayout()
-        self.contentLayout.setSpacing(0)
+        self.contentLayout.setSpacing(18)
         self.contentLayout.setContentsMargins(0, 0, 0, 0)
         contentWidget.setLayout(self.contentLayout)
 
