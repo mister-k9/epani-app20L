@@ -128,7 +128,7 @@ class MainWindow(QMainWindow):
         self.mediaplayer = self.instance.media_player_new()
         self.videoframe = QFrame(frameShape=QFrame.NoFrame, frameShadow=QFrame.Plain)
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        adVideoSizePolicy.setHorizontalStretch(2)
+        # adVideoSizePolicy.setHorizontalStretch(2)
         # adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
         self.videoframe.setSizePolicy(adVideoSizePolicy)
         self.videoframe.setStyleSheet("background: black;")
@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
         # Main Content
         contentSizePolicy = QSizePolicy(
             QSizePolicy.Expanding, QSizePolicy.Expanding)
-        contentSizePolicy.setHorizontalStretch(1)
+        # contentSizePolicy.setHorizontalStretch(1)
         contentWidget = QWidget()
         contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
