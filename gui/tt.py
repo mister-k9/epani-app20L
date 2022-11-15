@@ -123,7 +123,7 @@ class MainWindow(QMainWindow):
     def init_layout(self):
         self.mainWidget = QWidget()
         # self.mainWidget.showFullScreen()
-        self.adVideoWidget = QWidget()
+        self.adVideoWidget = QFrame()
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
         adVideoSizePolicy.setVerticalStretch(0)
