@@ -154,11 +154,14 @@ class MainWindow(QMainWindow):
         self.videoframe = QFrame(
             frameShape=QFrame.Box, frameShadow=QFrame.Raised
         )
+        self.videoframe.setSizePolicy(adVideoSizePolicy)
+
+    
         if sys.platform.startswith("linux"):  # for Linux using the X Server
             self.mediaplayer.set_xwindow(self.videoframe.winId())
-        ad_layout = QVBoxLayout()
-        ad_layout.addWidget(self.videoframe)
-        self.adVideoWidget.setLayout(ad_layout)
+        # ad_layout = QVBoxLayout()
+        # ad_layout.addWidget(self.videoframe)
+        # self.adVideoWidget.setLayout(ad_layout)
 
         file_name = 'media/winter-ad.avi'
         if file_name != '':
