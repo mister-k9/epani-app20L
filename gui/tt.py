@@ -157,7 +157,7 @@ class MainWindow(QMainWindow):
         contentWidget.setMaximumWidth(500)
         self.contentLayout = QVBoxLayout()
         self.contentLayout.setSpacing(0)
-        self.contentLayout.setContentsMargins(0, 0, 0, 0)
+        self.contentLayout.setContentsMargins(0, 0, 30, 30)
         contentWidget.setLayout(self.contentLayout)
 
         bodyHorizontalLayout = QHBoxLayout()
