@@ -163,7 +163,7 @@ class MainWindow(QMainWindow):
         # ad_layout.addWidget(self.videoframe)
         # self.adVideoWidget.setLayout(ad_layout)
 
-        file_name = 'media/winter-ad.avi'
+        file_name = 'media/winter-ad.mp4'
         if file_name != '':
             media = self.instance.media_new(file_name)
             self.mediaplayer.set_media(media)
