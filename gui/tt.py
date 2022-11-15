@@ -20,7 +20,7 @@ from pathlib import Path
 
 try:
     serialport = serial.Serial(
-        port='COM13',
+        port='/dev/ttyACM0',
         baudrate=115200,
         timeout=0.3
     )
