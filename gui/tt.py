@@ -154,7 +154,7 @@ class MainWindow(QMainWindow):
         contentWidget = QWidget()
         contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
-        contentWidget.setMaximumWidth(500)
+        contentWidget.setMaximumWidth(540)
         self.contentLayout = QVBoxLayout()
         self.contentLayout.setSpacing(0)
         self.contentLayout.setContentsMargins(0, 0, 0, 0)
@@ -162,7 +162,7 @@ class MainWindow(QMainWindow):
 
         bodyHorizontalLayout = QHBoxLayout()
         bodyHorizontalLayout.setSpacing(0)
-        bodyHorizontalLayout.setContentsMargins(0, 0, 36,36)
+        bodyHorizontalLayout.setContentsMargins(0, 0, 45,45)
         bodyHorizontalLayout.addWidget(self.videoframe)
         bodyHorizontalLayout.addWidget(contentWidget)
 
