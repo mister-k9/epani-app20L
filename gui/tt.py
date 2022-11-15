@@ -126,11 +126,10 @@ class MainWindow(QMainWindow):
         self.adVideoWidget = QFrame()
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
-        adVideoSizePolicy.setVerticalStretch(0)
         adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
         self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
 
-        self.adVideoWidget.setScaledContents(True)
+        
         self.adVideoWidget.setAlignment(Qt.AlignCenter)
 
         # self.adImg.setSizePolicy(adImgSizePolicy)
@@ -162,7 +161,7 @@ class MainWindow(QMainWindow):
         ad_layout.addWidget(self.videoframe)
         self.adVideoWidget.setLayout(ad_layout)
 
-        file_name = 'media/zomato-ad.avi'
+        file_name = 'media/winter-ad.avi'
         if file_name != '':
             media = self.instance.media_new(file_name)
             self.mediaplayer.set_media(media)
@@ -177,7 +176,6 @@ class MainWindow(QMainWindow):
         contentSizePolicy = QSizePolicy(
             QSizePolicy.Expanding, QSizePolicy.Expanding)
         contentSizePolicy.setHorizontalStretch(1)
-        contentSizePolicy.setVerticalStretch(0)
         contentWidget = QWidget()
         contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
