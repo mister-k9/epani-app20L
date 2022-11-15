@@ -128,7 +128,7 @@ class MainWindow(QMainWindow):
         self.dummyWidget = QWidget()
         dummySizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         dummySizePolicy.setHorizontalStretch(2)
-        dummySizePolicy.setVerticalStretch(0)
+        dummySizePolicy.setVerticalStretch(1)
         self.dummyWidget.setSizePolicy(dummySizePolicy)
 
 
