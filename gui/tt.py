@@ -123,18 +123,13 @@ class MainWindow(QMainWindow):
     def init_layout(self):
         self.mainWidget = QWidget()
 
-        self.adVideoWidget = QWidget()
-        adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        adVideoSizePolicy.setHorizontalStretch(2.5)
-        adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
-        self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
-
         # Ad Video
         self.instance = vlc.Instance('--input-repeat=999999')
         self.mediaplayer = self.instance.media_player_new()
-        self.videoframe = QFrame(
-            frameShape=QFrame.Box, frameShadow=QFrame.Raised
-        )
+        self.videoframe = QFrame(frameShape=QFrame.Box, frameShadow=QFrame.Raised)
+        adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        adVideoSizePolicy.setHorizontalStretch(2)
+        adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
         self.videoframe.setSizePolicy(adVideoSizePolicy)
 
     
@@ -155,7 +150,7 @@ class MainWindow(QMainWindow):
         # Main Content
         contentSizePolicy = QSizePolicy(
             QSizePolicy.Expanding, QSizePolicy.Expanding)
-        contentSizePolicy.setHorizontalStretch(0.5)
+        contentSizePolicy.setHorizontalStretch(1)
         contentWidget = QWidget()
         contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
