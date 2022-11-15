@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
         bodyHorizontalLayout = QHBoxLayout()
         bodyHorizontalLayout.setSpacing(0)
         bodyHorizontalLayout.setContentsMargins(0, 0, 0, 0)
-        bodyHorizontalLayout.addWidget(self.videoframe)
+        bodyHorizontalLayout.addWidget(self.adVideoWidget)
         bodyHorizontalLayout.addWidget(contentWidget)
 
         footer_layout = QHBoxLayout()
