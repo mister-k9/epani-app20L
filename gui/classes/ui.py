@@ -40,25 +40,25 @@ def create_footer_section(layout):
     l3 = QLabel()
 
     l1.setFont(font)
-    l1.setStyleSheet(u"background: rgba( 58, 125, 242, 0.8 );\n"
+    l1.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l1.setAlignment(Qt.AlignCenter)
     l1.setText(u"99K SOCIAL ENTERPRISE")
-    l1.setMinimumHeight(54)
+    l1.setMinimumHeight(171)
 
     l2.setFont(font)
-    l2.setStyleSheet(u"background: rgba( 58, 125, 242, 0.8 );\n"
+    l2.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l2.setAlignment(Qt.AlignCenter)
     l2.setText(u"SAVE WATER - SAVE LIFE")
-    l1.setMinimumHeight(54)
+
 
     l3.setFont(font)
-    l3.setStyleSheet(u"background: rgba( 58, 125, 242, 0.8 );\n"
+    l3.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l3.setAlignment(Qt.AlignCenter)
     l3.setText(u"STATUS: ACTIVE")
-    l1.setMinimumHeight(144)
+    
 
     layout.addWidget(l1)
     layout.addWidget(l2)
