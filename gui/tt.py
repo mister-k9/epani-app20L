@@ -122,9 +122,9 @@ class MainWindow(QMainWindow):
 
     def init_layout(self):
         self.mainWidget = QWidget()
-        self.mainWidget.showFullScreen()
+        # self.mainWidget.showFullScreen()
         self.adVideoWidget = QWidget()
-        self.adVideoWidget.showFullScreen()
+        # self.adVideoWidget.showFullScreen()
 
         # self.adImg = QLabel("ad_img")
         # adImgSizePolicy = QSizePolicy(
@@ -202,7 +202,7 @@ class MainWindow(QMainWindow):
         self.ad_video_start()
 
     def ad_video_start(self):
-        self.mediaplayer.set_fullscreen(True)
+        # self.mediaplayer.set_fullscreen(True)
         # self.mediaplayer.audio_set_mute(True)
         self.mediaplayer.play()
         serial_write("advideo")
