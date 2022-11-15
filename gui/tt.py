@@ -162,7 +162,7 @@ class MainWindow(QMainWindow):
 
         bodyHorizontalLayout = QHBoxLayout()
         bodyHorizontalLayout.setSpacing(0)
-        bodyHorizontalLayout.setContentsMargins(0, 0, 45,45)
+        bodyHorizontalLayout.setContentsMargins(0, 0, 54,54)
         bodyHorizontalLayout.addWidget(self.videoframe)
         bodyHorizontalLayout.addWidget(contentWidget)
 
