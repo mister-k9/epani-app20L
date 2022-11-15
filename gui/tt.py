@@ -124,6 +124,13 @@ class MainWindow(QMainWindow):
         self.mainWidget = QWidget()
         # self.mainWidget.showFullScreen()
         self.adVideoWidget = QWidget()
+        adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        adVideoSizePolicy.setHorizontalStretch(2)
+        adVideoSizePolicy.setVerticalStretch(0)
+        adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
+        self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
+
+        # self.adImg.setSizePolicy(adImgSizePolicy)
         # self.adVideoWidget.showFullScreen()
 
         # self.adImg = QLabel("ad_img")
