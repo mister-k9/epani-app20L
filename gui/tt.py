@@ -122,31 +122,12 @@ class MainWindow(QMainWindow):
 
     def init_layout(self):
         self.mainWidget = QWidget()
-        # self.mainWidget.showFullScreen()
+
         self.adVideoWidget = QWidget()
         adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        adVideoSizePolicy.setHorizontalStretch(2)
+        adVideoSizePolicy.setHorizontalStretch(2.5)
         adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
         self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
-
-        
-        
-        # self.adImg.setSizePolicy(adImgSizePolicy)
-        # self.adVideoWidget.showFullScreen()
-
-        # self.adImg = QLabel("ad_img")
-        # adImgSizePolicy = QSizePolicy(
-        #     QSizePolicy.Expanding, QSizePolicy.Expanding)
-        # adImgSizePolicy.setHorizontalStretch(2)
-        # adImgSizePolicy.setVerticalStretch(0)
-        # adImgSizePolicy.setHeightForWidth(
-        #     self.adImg.sizePolicy().hasHeightForWidth())
-        # self.adImg.setSizePolicy(adImgSizePolicy)
-        # # self.adImg.setMinimumSize(QSize(0, 500))
-        # # self.adImg.setStyleSheet(u"")
-        # # self.adImg.setPixmap(QPixmap(u":/newPrefix/Images/img.jfif"))
-        # self.adImg.setScaledContents(True)
-        # self.adImg.setAlignment(Qt.AlignCenter)
 
         # Ad Video
         self.instance = vlc.Instance('--input-repeat=999999')
@@ -159,9 +140,6 @@ class MainWindow(QMainWindow):
     
         if sys.platform.startswith("linux"):  # for Linux using the X Server
             self.mediaplayer.set_xwindow(self.videoframe.winId())
-        # ad_layout = QVBoxLayout()
-        # ad_layout.addWidget(self.videoframe)
-        # self.adVideoWidget.setLayout(ad_layout)
 
         file_name = 'media/winter-ad.mp4'
         if file_name != '':
@@ -177,7 +155,7 @@ class MainWindow(QMainWindow):
         # Main Content
         contentSizePolicy = QSizePolicy(
             QSizePolicy.Expanding, QSizePolicy.Expanding)
-        contentSizePolicy.setHorizontalStretch(1)
+        contentSizePolicy.setHorizontalStretch(0.5)
         contentWidget = QWidget()
         contentWidget.setStyleSheet("background: rgba( 58, 125, 242, 0.8 );color:white;")
         contentWidget.setSizePolicy(contentSizePolicy)
