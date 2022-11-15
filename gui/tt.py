@@ -123,14 +123,26 @@ class MainWindow(QMainWindow):
     def init_layout(self):
         self.mainWidget = QWidget()
 
+        self.adVideoWidget = QWidget()
+        self.adVideoLayout = QVBoxLayout()
+        self.dummyWidget = QWidget()
+
         # Ad Video
         self.instance = vlc.Instance('--input-repeat=999999')
         self.mediaplayer = self.instance.media_player_new()
         self.videoframe = QFrame(frameShape=QFrame.NoFrame, frameShadow=QFrame.Plain)
-        adVideoSizePolicy = QSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        adVideoSizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         adVideoSizePolicy.setHorizontalStretch(2)
+        adVideoSizePolicy.setVerticalStretch(3)
         adVideoSizePolicy.setHeightForWidth(self.videoframe.sizePolicy().hasHeightForWidth())
-        self.videoframe.setSizePolicy(adVideoSizePolicy)
+        # self.videoframe.setSizePolicy(adVideoSizePolicy)
+
+        self.adVideoLayout.addWidget(self.dummyWidget)
+        self.adVideoLayout.addWidget(self.videoframe)
+        self.adVideoWidget.setLayout(self.adVideoLayout)
+        self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
+
+
 
     
         if sys.platform.startswith("linux"):  # for Linux using the X Server
