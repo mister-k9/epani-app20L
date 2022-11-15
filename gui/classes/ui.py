@@ -58,7 +58,7 @@ def create_footer_section(layout):
                      "color:white;")
     l3.setAlignment(Qt.AlignCenter)
     l3.setText(u"STATUS: ACTIVE")
-    l1.setMinimumHeight(54)
+    l1.setMinimumHeight(144)
 
     layout.addWidget(l1)
     layout.addWidget(l2)
