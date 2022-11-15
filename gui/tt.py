@@ -130,6 +130,9 @@ class MainWindow(QMainWindow):
         adVideoSizePolicy.setHeightForWidth(self.adVideoWidget.sizePolicy().hasHeightForWidth())
         self.adVideoWidget.setSizePolicy(adVideoSizePolicy)
 
+        self.adVideoWidget.setScaledContents(True)
+        self.adVideoWidget.setAlignment(Qt.AlignCenter)
+
         # self.adImg.setSizePolicy(adImgSizePolicy)
         # self.adVideoWidget.showFullScreen()
 
