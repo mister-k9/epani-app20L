@@ -196,9 +196,7 @@ class MainWindow(QMainWindow):
         mainContentLayout.setContentsMargins(0, 0, 0, 0)
         mainContentLayout.addLayout(bodyHorizontalLayout)
         mainContentLayout.addLayout(footer_layout)
-        
-        
-        
+        self.stackMain.setLayout(mainContentLayout)
 
     def init_layout(self):
         self.stackedWidget = QStackedWidget()
@@ -339,7 +337,7 @@ class MainWindow(QMainWindow):
 
         if self.stackAdVideo == self.stackedWidget.currentWidget():
             self.toggle_ad_video()
-            # Remove this K9
+
             # serial_write("volume")
             # toggle_content_screen(self.contentL, "volumeSelection")
             serial_write("readcard")
