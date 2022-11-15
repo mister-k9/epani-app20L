@@ -43,21 +43,21 @@ def create_footer_section(layout):
     l1.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l1.setAlignment(Qt.AlignCenter)
-    # l1.setText(u"99K SOCIAL ENTERPRISE")
+    l1.setText(u"99K SOCIAL ENTERPRISE")
     l1.setMinimumHeight(72)
 
     l2.setFont(font)
     l2.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l2.setAlignment(Qt.AlignCenter)
-    # l2.setText(u"SAVE WATER - SAVE LIFE")
+    l2.setText(u"SAVE WATER - SAVE LIFE")
 
 
     l3.setFont(font)
     l3.setStyleSheet(u"background: black;\n"
                      "color:white;")
     l3.setAlignment(Qt.AlignCenter)
-    # l3.setText(u"STATUS: ACTIVE")
+    l3.setText(u"STATUS: ACTIVE")
     
 
     layout.addWidget(l1)

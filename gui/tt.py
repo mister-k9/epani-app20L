@@ -198,8 +198,9 @@ class MainWindow(QMainWindow):
 
 
     def on_serial_worker_listen(self, data):
-        #print(data)
-        pass
+        
+        if self.currOrder is None:
+            self.currOrder = Order()
 
 
 if __name__ == '__main__':
