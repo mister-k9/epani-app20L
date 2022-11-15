@@ -126,6 +126,11 @@ class MainWindow(QMainWindow):
         self.adVideoWidget = QWidget()
         self.adVideoLayout = QVBoxLayout()
         self.dummyWidget = QWidget()
+        dummySizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        dummySizePolicy.setHorizontalStretch(2)
+        dummySizePolicy.setVerticalStretch(0)
+        self.dummyWidget.setSizePolicy(dummySizePolicy)
+
 
         # Ad Video
         self.instance = vlc.Instance('--input-repeat=999999')
