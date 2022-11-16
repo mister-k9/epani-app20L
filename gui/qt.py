@@ -344,9 +344,6 @@ class MainWindow(QMainWindow):
             self.currOrder = Order()
 
        
-
-        
-
         if self.stackAdVideo == self.stackedWidget.currentWidget():
             self.toggle_ad_video()
             # serial_write("volume")
@@ -367,8 +364,8 @@ class MainWindow(QMainWindow):
 
         if data == 'C':
             self.currOrder = None
-        self.toggle_ad_video()
-        return
+            self.toggle_ad_video()
+            return
 
         if 'z' in data:
             # self.currOrder.dispensed_volume = data[1:]
