@@ -56,7 +56,7 @@ class Order():
             conn = sqlite3.connect(os.getenv('LOCAL_DB'))
 
             cur = conn.cursor()
-            query = 'SELECT name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
+            query = 'SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
             cur.execute(query)
             tst = cur.fetchmany()[0]
 
@@ -67,11 +67,11 @@ class Order():
                 final_balance = current_balance - self.amount
                 nw = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 cur.execute('UPDATE cards_info SET balance=' + str(final_balance) + ',last_txn_volume=' + str(
-                    self.amount) + ',last_txn_timestamp=\'' + nw + "\'" + ' WHERE card_number =\'' + self.cardNo + "\'")
-                status = "completed"
-                conn.execute('INSERT INTO orders_info (order_id,card_number,volume,amount,txn_status,timestamp) VALUES (?,?,?,?,?,?)', [
-                             "orderid", self.cardNo, self.volume, self.amount, status, nw])
-                conn.commit()
+                    self.volume) + ',last_txn_timestamp=\'' + nw + "\'" + ' WHERE card_number =\'' + self.cardNo + "\'")
+                # status = "completed"
+                # conn.execute('INSERT INTO orders_info (card_number,volume,amount,txn_status,timestamp) VALUES (?,?,?,?,?,?)', [
+                #               self.cardNo, self.volume, self.amount, status, nw])
+                # conn.commit()
                 self.available_balance = final_balance
                 self.holder_name = card_owner
                 print(card_owner, current_balance, final_balance)
