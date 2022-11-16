@@ -53,7 +53,7 @@ class Order():
     def process_payment(self):
         if not self.internet_available:
 
-            conn = sqlite3.connect()
+            conn = sqlite3.connect(os.getenv('LOCAL_DB'))
 
             cur = conn.cursor()
             query = 'SELECT name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
