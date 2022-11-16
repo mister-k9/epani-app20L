@@ -378,11 +378,12 @@ class MainWindow(QMainWindow):
         if 'y' in data:
             print(data)
 
-        if data == "new":
-            time.sleep(2)
+        if data == "new" or data == "busy":
+            time.sleep(1)
             self.currOrder = None
             self.toggle_ad_video()
             return
+         
 
         
 
