@@ -277,10 +277,12 @@ class MainWindow(QMainWindow):
     def read_card(self, data):
         if not self.currOrder.is_card_set():
             if 9 > len(data) > 5:
-                self.currOrder.set_cardno(data)
-
+                print(data)
                 toggle_content_screen(self.contentL, "processingPayment")
                 serial_write("cardok")
+                self.currOrder.set_cardno(data)
+
+                
                 # TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
                 payment_status = self.currOrder.process_payment()
 
@@ -340,6 +342,7 @@ class MainWindow(QMainWindow):
             return
         
         self.start = time.time()
+
         if self.currOrder is None:
             self.currOrder = Order()
 
@@ -353,6 +356,11 @@ class MainWindow(QMainWindow):
                 self.contentL, "insertCard", order=self.currOrder)
             return
 
+        if data == 'C':
+            self.currOrder = None
+            self.toggle_ad_video()
+            return
+
         # for volume selection
         # self.volume_selection(data)
         
@@ -362,10 +370,7 @@ class MainWindow(QMainWindow):
         # for tap selection
         # self.tap_selection(data)
 
-        if data == 'C':
-            self.currOrder = None
-            self.toggle_ad_video()
-            return
+        
 
         if 'z' in data:
             # self.currOrder.dispensed_volume = data[1:]
