@@ -101,11 +101,6 @@ class Order():
             # TODO: IF NOT API WORKING SHOULD NOT GO TO TAP SELECTION, SHOW ERROR
             # TODO: CARD NOT FOUND MESSAGE
             # TODO: NO BALANCE MESSAGE
-            # auth_endpoint = "http://localhost:8000/api/auth/"
-            # auth_resp = requests.post(auth_endpoint, json={"username": "machine1", "password": "k9k9k9k9"})
-
-            # if auth_resp.status_code == 200:
-            #     token = auth_resp.json()['token']
 
             conn = sqlite3.connect(os.getenv('LOCAL_DB'))
             cur = conn.cursor()
@@ -123,12 +118,8 @@ class Order():
                 'am': self.amount,
                 'txn_ts': nw,
             }
-            print("Request Started-")
-            try:
-                res = (requests.post(deduct_card_balance_endpoint,json=data)).json()
-            except Exception as e:
-                print("Request failed!")
-                print(e)
+            
+            res = (requests.post(deduct_card_balance_endpoint,json=data)).json()
             if not type(res) == dict:
                 if res == 'Invalid Machine':
                     return 'invalid_machine'
@@ -136,43 +127,13 @@ class Order():
                     return 'invalid_token'
                 elif res == 'Invalid Card':
                     return 'card_not_found'
-
-            print(res)
             self.available_balance = res['balance']
             self.holder_name = res['name']
             order_created = res['order_created']
-
             if not order_created:
                 return 'insufficienct_balance'
-
-            return 'payment_done'
-
-            
                 
-
-            # order_id = last order id  + 1
-
-            # params = {
-            #     'mid': mid,
-            #     'mtoken': mtoken
-            # }
-            # data = {
-            #     'card_number': f'{self.cardNo}',
-            #     'order_status': 'DONE_PAYMENT',
-            #     'amount': f'{self.amount}',
-            #     'volume_in_ml': f'{self.volume}',
-            #     'local_timestamp': f'{nw}',
-            # }
-            # post_order_endpoint = os.getenv('CREATE_ORDER_ENDPOINT')
-            # post_order = requests.post(
-            #     post_order_endpoint, json=data, params=params)
-            # res = post_order.json()
-            # if res == 'Successful!':
-            #     return 'payment_done'
-            # elif res == 'Invalid Request!':
-            #     return 'invalid_token'
-            # elif res == 'Invalid Machine':
-            #     return 'invalid_machine'
+            return 'payment_done'
 
         except Exception as e:
             print(e)

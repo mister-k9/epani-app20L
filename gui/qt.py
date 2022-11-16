@@ -279,10 +279,19 @@ class MainWindow(QMainWindow):
             if 9 > len(data) > 5:
                 self.currOrder.set_cardno(data)
 
-                # toggle_content_screen(self.contentL, "processingPayment")
+                toggle_content_screen(self.contentL, "processingPayment")
                 serial_write("cardok")
                 # TODO : PROCESSING PAYMENT SCREEN IS NOT BEING SHOWN
                 payment_status = self.currOrder.process_payment()
+
+                if payment_status == "insufficient_balance":
+                    pass
+                
+                if payment_status == "card_not_found":
+                    pass
+                
+                if payment_status == "invalid_machine" or payment_status == "invalid_token":
+                    pass
 
                 if payment_status == "payment_done":
                     time.sleep(2)  # Necessary delay for serial here
@@ -316,6 +325,47 @@ class MainWindow(QMainWindow):
             # TODO : NAVIGATING TO AD SCREEN WHEN 'C' IS PRESSED WHILE DISPENSING
 
     def on_serial_worker_listen(self, data):
+        
+        self.start = time.time()
+        if self.currOrder is None:
+            self.currOrder = Order()
+
+        if data == 'C':
+            self.currOrder = None
+            self.toggle_ad_video()
+            return
+
+        if data == "new":
+            time.sleep(2)
+            self.currOrder = None
+            self.toggle_ad_video()
+            return
+
+        if self.stackAdVideo == self.stackedWidget.currentWidget():
+            self.toggle_ad_video()
+            # serial_write("volume")
+            # toggle_content_screen(self.contentL, "volumeSelection")
+            serial_write("readcard")
+            toggle_content_screen(
+                self.contentL, "insertCard", order=self.currOrder)
+            return
+
+        # for volume selection
+        # self.volume_selection(data)
+        
+        # for reading card
+        self.read_card(data)
+        
+        # for tap selection
+        # self.tap_selection(data)
+
+        if 'z' in data:
+            # self.currOrder.dispensed_volume = data[1:]
+            print(data)
+        if 'y' in data:
+            print(data)
+
+        
 
         if data == "":
             # TODO : See if this can be removed
@@ -328,50 +378,6 @@ class MainWindow(QMainWindow):
                 self.currOrder = None
                 self.start = time.time()
                 self.toggle_ad_video()
-            return
-
-        self.start = time.time()
-
-        if self.currOrder is None:
-            self.currOrder = Order()
-
-        if self.stackAdVideo == self.stackedWidget.currentWidget():
-            self.toggle_ad_video()
-
-            # serial_write("volume")
-            # toggle_content_screen(self.contentL, "volumeSelection")
-            serial_write("readcard")
-            toggle_content_screen(
-                self.contentL, "insertCard", order=self.currOrder)
-            return
-
-        # for volume selection
-        # self.volume_selection(data)
-
-        if data == 'C':
-            self.currOrder = None
-            self.toggle_ad_video()
-            return
-
-        try:
-            # for reading card
-            self.read_card(data)
-        except Exception as e:
-            print(e)
-
-        # for tap selection
-        # self.tap_selection(data)
-
-        if 'z' in data:
-            # self.currOrder.dispensed_volume = data[1:]
-            print(data)
-        if 'y' in data:
-            print(data)
-
-        if data == "new":
-            time.sleep(2)
-            self.currOrder = None
-            self.toggle_ad_video()
             return
 
 
