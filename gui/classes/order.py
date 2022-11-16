@@ -56,13 +56,11 @@ class Order():
             conn = sqlite3.connect(os.getenv('LOCAL_DB'))
 
             cur = conn.cursor()
-            query = 'SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
-            print(cur.execute(query))
-            # tst = cur.fetchmany()[0]
             cdetails = (cur.execute('SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'")).fetchone()
-            print(cdetails)
-            # current_balance = tst[1]
-            # card_owner = tst[0]
+            if not cdetails:
+                return 'card_not_found'
+            current_balance = cdetails[1]
+            card_owner = cdetails[0]
 
             if current_balance >= self.amount:
                 final_balance = current_balance - self.amount
