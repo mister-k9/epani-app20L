@@ -260,33 +260,33 @@ def create_insert_card_screen(layout, order):
     card.setContentsMargins(108, 9, 108, 9)
     card.setLayout(card_lay)
 
-    # Cancel Card
-    lbl = QLabel("CANCEL")
-    lbl.setAlignment(Qt.AlignCenter)
-    lbl.setFont(font)
-    lbl.setStyleSheet(
-        "font-size:22px;color:black;background:white;border-top-left-radius:5px;border-bottom-left-radius:5px;")
-    but_lbl = QLabel("C")
-    but_lbl.setAlignment(Qt.AlignCenter)
-    but_lbl.setFont(font)
-    but_lbl.setStyleSheet(
-        "font-size:18px;color:white;border-top-right-radius:5px;border-bottom"
-        "-right-radius:5px;border-top-left-radius:5px;border-bottom-left-radius:5px;background:red;")
-    but_wid = QWidget()
-    but_wid.setStyleSheet(
-        "background:white;border-top-right-radius:5px;border-bottom-right-radius:5px;")
-    but_lay = QHBoxLayout()
-    but_lay.addWidget(but_lbl)
-    but_lay.setSpacing(0)
-    but_lay.setContentsMargins(135, 13, 13, 13)
-    but_wid.setLayout(but_lay)
-    card_lay = QHBoxLayout()
-    card_lay.setSpacing(0)
-    card_lay.setContentsMargins(63, 66, 63, 66)
-    card_lay.addWidget(lbl)
-    card_lay.addWidget(but_wid)
-    card_cancel = QWidget()
-    card_cancel.setLayout(card_lay)
+    # # Cancel Card
+    # lbl = QLabel("CANCEL")
+    # lbl.setAlignment(Qt.AlignCenter)
+    # lbl.setFont(font)
+    # lbl.setStyleSheet(
+    #     "font-size:22px;color:black;background:white;border-top-left-radius:5px;border-bottom-left-radius:5px;")
+    # but_lbl = QLabel("C")
+    # but_lbl.setAlignment(Qt.AlignCenter)
+    # but_lbl.setFont(font)
+    # but_lbl.setStyleSheet(
+    #     "font-size:18px;color:white;border-top-right-radius:5px;border-bottom"
+    #     "-right-radius:5px;border-top-left-radius:5px;border-bottom-left-radius:5px;background:red;")
+    # but_wid = QWidget()
+    # but_wid.setStyleSheet(
+    #     "background:white;border-top-right-radius:5px;border-bottom-right-radius:5px;")
+    # but_lay = QHBoxLayout()
+    # but_lay.addWidget(but_lbl)
+    # but_lay.setSpacing(0)
+    # but_lay.setContentsMargins(135, 13, 13, 13)
+    # but_wid.setLayout(but_lay)
+    # card_lay = QHBoxLayout()
+    # card_lay.setSpacing(0)
+    # card_lay.setContentsMargins(63, 66, 63, 66)
+    # card_lay.addWidget(lbl)
+    # card_lay.addWidget(but_wid)
+    # card_cancel = QWidget()
+    # card_cancel.setLayout(card_lay)
 
 
 
