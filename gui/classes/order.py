@@ -59,8 +59,8 @@ class Order():
             query = 'SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
             print(cur.execute(query))
             # tst = cur.fetchmany()[0]
-            card_owner, current_balance = (cur.execute('SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'")).fetchone()
-
+            cdetails = (cur.execute('SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'")).fetchone()
+            print(cdetails)
             # current_balance = tst[1]
             # card_owner = tst[0]
 
