@@ -325,21 +325,27 @@ class MainWindow(QMainWindow):
             # TODO : NAVIGATING TO AD SCREEN WHEN 'C' IS PRESSED WHILE DISPENSING
 
     def on_serial_worker_listen(self, data):
+
+        if data == "":
+            # TODO : See if this can be removed
+            if self.stackAdVideo == self.stackedWidget.currentWidget():
+                self.start = time.time()
+                return
+
+            stop = time.time()
+            if stop - self.start > 90.0:
+                self.currOrder = None
+                self.start = time.time()
+                self.toggle_ad_video()
+            return
         
         self.start = time.time()
         if self.currOrder is None:
             self.currOrder = Order()
 
-        if data == 'C':
-            self.currOrder = None
-            self.toggle_ad_video()
-            return
+       
 
-        if data == "new":
-            time.sleep(2)
-            self.currOrder = None
-            self.toggle_ad_video()
-            return
+        
 
         if self.stackAdVideo == self.stackedWidget.currentWidget():
             self.toggle_ad_video()
@@ -359,26 +365,26 @@ class MainWindow(QMainWindow):
         # for tap selection
         # self.tap_selection(data)
 
+        if data == 'C':
+            self.currOrder = None
+        self.toggle_ad_video()
+        return
+
         if 'z' in data:
             # self.currOrder.dispensed_volume = data[1:]
             print(data)
         if 'y' in data:
             print(data)
 
+        if data == "new":
+            time.sleep(2)
+            self.currOrder = None
+            self.toggle_ad_video()
+            return
+
         
 
-        if data == "":
-            # TODO : See if this can be removed
-            if self.stackAdVideo == self.stackedWidget.currentWidget():
-                self.start = time.time()
-                return
-
-            stop = time.time()
-            if stop - self.start > 90.0:
-                self.currOrder = None
-                self.start = time.time()
-                self.toggle_ad_video()
-            return
+        
 
 
 if __name__ == '__main__':

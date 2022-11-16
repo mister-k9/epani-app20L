@@ -120,6 +120,7 @@ class Order():
             }
             
             res = (requests.post(deduct_card_balance_endpoint,json=data)).json()
+            print(res)
             if not type(res) == dict:
                 if res == 'Invalid Machine':
                     return 'invalid_machine'
@@ -132,7 +133,7 @@ class Order():
             order_created = res['order_created']
             if not order_created:
                 return 'insufficienct_balance'
-                
+
             return 'payment_done'
 
         except Exception as e:
