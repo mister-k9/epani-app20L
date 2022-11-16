@@ -293,7 +293,7 @@ def create_insert_card_screen(layout, order):
     layout.addWidget(card_vol)
     layout.addWidget(lInstruction)
     layout.addWidget(card)
-    layout.addWidget(card_cancel)
+    # layout.addWidget(card_cancel)
 
 # TODO: MODIFY
 def create_processing_payment_screen(layout):
