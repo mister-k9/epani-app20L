@@ -57,8 +57,9 @@ class Order():
 
             cur = conn.cursor()
             query = 'SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'"
-            cur.execute(query)
+            print(cur.execute(query))
             tst = cur.fetchmany()[0]
+            card_owner, current_balance = (cur.execute('SELECT holder_name,balance FROM cards_info WHERE card_number =\'' + self.cardNo + "\'")).fetchone()
 
             current_balance = tst[1]
             card_owner = tst[0]
@@ -71,7 +72,7 @@ class Order():
                 # status = "completed"
                 # conn.execute('INSERT INTO orders_info (card_number,volume,amount,txn_status,timestamp) VALUES (?,?,?,?,?,?)', [
                 #               self.cardNo, self.volume, self.amount, status, nw])
-                # conn.commit()
+                conn.commit()
                 self.available_balance = final_balance
                 self.holder_name = card_owner
                 print(card_owner, current_balance, final_balance)
