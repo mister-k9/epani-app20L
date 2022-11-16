@@ -23,10 +23,13 @@ class Order():
         self.check_internet_connection()
 
     def check_internet_connection(self):
-        if requests.get('https://www.google.com/'):
-            self.internet_available = True
-        else:
-            self.internet_available = False
+        try:
+            if not requests.get('https://www.google.com/'):
+                self.internet_available = False
+            else:
+                self.internet_available = True
+        except:
+            pass
 
     def get_tap(self):
         return self.tap
